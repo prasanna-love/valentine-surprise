@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yay! 💖</title>
+
+  <!-- Romantic font -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, #ffb3c6, #ffe6f0, #ffccd9);
+      position: relative;
+    }
+
+    h1 {
+      margin-top: 50px;
+      color: #ff3366;
+      text-shadow: 1px 1px 3px #ff99aa;
+      font-family: 'Pacifico', cursive; /* romantic cursive */
+      font-size: 28px; /* smaller font size */
+    }
+
+    h2 {
+      color: #ff6699;
+      margin-top: 20px;
+      font-style: italic;
+      text-shadow: 1px 1px 2px #ff99aa;
+      font-family: 'Roboto', sans-serif; /* simpler subtext font */
+      font-size: 16px; /* smaller font size */
+    }
+
+    img {
+      margin-top: 30px;
+      width: 250px; /* slightly smaller image */
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: pop 0.8s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 12px; /* smaller floating hearts */
+      color: #ff6699;
+      animation: fall linear infinite;
+      top: -10%;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(120vh) rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Happy Valentine's Day Pati💖</h1>
+  <h2>"I don't believe in valentine thing! I believe in loving you every single day❤️"</h2>
+  <img src="PP2.jpg.jpeg" alt="Valentine Pic">
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 8 + 10 + "px"; // smaller hearts
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>

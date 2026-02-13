@@ -1,43 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
+  <title>Valentine 💝</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background: linear-gradient(to right, #ffdde1, #ee9ca7);
-      font-family: Arial, sans-serif;
       text-align: center;
-      padding: 50px;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: radial-gradient(circle at top left, #ffb3c6, #ffe6f0, #ffccd9);
+      overflow: hidden;
+      margin: 0;
+      height: 100vh;
+      position: relative;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
+
     h1 {
-      color: #e60073;
+      margin-top: 40px;
+      font-size: 48px;
+      font-family: 'Pacifico', cursive;
+      color: #ff3366;
+      animation: pulse 2s infinite;
     }
-    p {
-      font-size: 18px;
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
+
+    .sticker {
+      width: 180px;
+      margin-top: 15px;
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+      100% { transform: translateY(0); }
+    }
+
+    .btnBox {
+      margin-top: 30px;
+      position: relative;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 22px;
+      font-weight: bold;
+      margin: 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Pacifico', cursive;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      position: absolute;
+    }
+
+    .yesBtn {
+      background: linear-gradient(45deg, #ff3366, #ff6699);
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      left: 40%;
+      top: 50%;
+    }
+
+    .yesBtn:hover {
+      transform: scale(1.2) rotate(-3deg);
+      box-shadow: 0 12px 25px rgba(255,102,153,0.6);
+    }
+
+    #noBtn {
+      background: linear-gradient(45deg, #cccccc, #999999);
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      left: 60%;
+      top: 50%;
+    }
+
+    @keyframes dance {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(15deg); }
+      50% { transform: rotate(-15deg); }
+      75% { transform: rotate(15deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff6699;
+      font-size: 20px;
+      animation: fall linear infinite;
+      top: -10%;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(120vh); }
+    }
+
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Happy Valentine’s Day ❤️</h1>
-    <p>Hi Prathik,</p>
-    <p>
-      Naa life lo nenu choose cheskunna best person nuvvu 💕  
-      Naa smile, naa strength, naa happiness anni nuvve.
-    </p>
-    <p>
-      Forever grateful to have you by my side 🤍
-    </p>
-    <p><b>– Yours always, Prasanna 💖</b></p>
+
+  <h1>Will you be my Valentine? Prathik 💝</h1>
+
+  <img src="sticker2.gif" class="sticker">
+
+  <div class="btnBox">
+    <button class="yesBtn" onclick="goYes()">YES 💖</button>
+    <button id="noBtn">NO 😜</button>
   </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.querySelector(".yesBtn");
+
+    let yesClickedOnce = false; // Track first click
+
+    function goYes() {
+      if (!yesClickedOnce) {
+        yesClickedOnce = true;
+        yesBtn.innerText = "Are you sure? 💌"; // Warning text
+        yesBtn.style.background = "linear-gradient(45deg, #ff9999, #ff4d88)";
+        yesBtn.style.transform = "scale(1.1)";
+        yesBtn.style.boxShadow = "0 12px 25px rgba(255,102,153,0.6)";
+        alert("Think twice! 😅  Hitting YES may cause permanent happiness😁💖. Don’t overthink 😎.. pati you have only ONE option — go ahead! 💖");
+      } else {
+        window.location.href = "yes.html"; // Redirect on second click
+      }
+    }
+
+    // NO button escape
+    function moveNoButton() {
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      const shiftX = Math.random() * 300 - 150;
+      const shiftY = Math.random() * 300 - 150;
+
+      let newX = noBtn.offsetLeft + shiftX;
+      let newY = noBtn.offsetTop + shiftY;
+
+      newX = Math.min(Math.max(newX, 0), window.innerWidth - btnWidth);
+      newY = Math.min(Math.max(newY, 0), window.innerHeight - btnHeight);
+
+      noBtn.style.left = newX + "px";
+      noBtn.style.top = newY + "px";
+
+      noBtn.style.animation = "dance 0.5s";
+      setTimeout(() => noBtn.style.animation = "", 500);
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    // floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
 </body>
 </html>
